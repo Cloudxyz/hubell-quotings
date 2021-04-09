@@ -1,0 +1,47 @@
+a:hover {
+    color: #000b1c;
+}
+
+.btn-hb{
+    background-color: #ffd200;
+    color: #000b1c;
+}
+
+.input-no-styles{
+    background: none;
+    border: none;
+}
+
+.max-w-10{
+    max-width: 90%;
+}
+
+.title-header {
+    margin-bottom: 44px;
+    position: relative;
+}
+
+.title-header:after {
+    position: absolute;
+    content: "";
+    width: 70px;
+    bottom: -19px;
+    height: 5px;
+    left: 0;
+    top: auto;
+    background-color: #ffd200;
+}
+
+.border-indigo-400{
+    border-color: #ffd200 !important;
+}
+
+.modal-products{
+    width: 70% !important;
+    max-width: none !important;
+}
+
+.icons{
+    font-size: 30px;
+    margin-right: 10px;
+}

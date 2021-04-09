@@ -1,0 +1,50 @@
+.table {
+    display: table;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    text-align: center;
+}
+
+.table-dark {
+    background-color: #212529;
+    color: #fff;
+    border-color: #373b3e;
+}
+
+.container-fluid{
+    width: 100%;
+}
+
+.col{
+    padding: 5px 0;
+}
+
+.col-text-left{
+    text-align: left;
+}
+
+.text-danger {
+    color: #dc3545!important;
+}
+
+.table-products{
+    font-size: 12px;
+}
+
+td {
+    padding: .5rem .5rem;
+    background-color: #e5e7eb;
+    border-bottom: 1px solid #cecece;
+}
+
+.info{
+    float: right;
+}
+
+.set-font{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+}
