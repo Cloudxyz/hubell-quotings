@@ -2,92 +2,92 @@
 
 // Users
 Breadcrumbs::for('users.index', function ($trail) {
-    $trail->push('Users', route('users.index'));
+    $trail->push(__('Users'), route('users.index'));
 });
 
 // Users > Crear Usuario
 Breadcrumbs::for('users.create', function ($trail) {
     $trail->parent('users.index');
-    $trail->push('Crear Usuario', route('users.create'));
+    $trail->push(__('Create User'), route('users.create'));
 });
 
 // Users > Ver Usuario
 Breadcrumbs::for('users.show', function ($trail, $user) {
     $trail->parent('users.index');
-    $trail->push('Ver Usuario', route('users.show', $user));
+    $trail->push(__('View User'), route('users.show', $user));
 });
 
-// Users > Editar Usuario
+// Users > Actualizar Usuario
 Breadcrumbs::for('users.edit', function ($trail, $user) {
     $trail->parent('users.index');
-    $trail->push('Actualizar Usuario', route('users.edit', $user));
+    $trail->push(__('Update User'), route('users.edit', $user));
 });
 
 // Products
 Breadcrumbs::for('products.index', function ($trail) {
-    $trail->push('Productos', route('products.index'));
+    $trail->push(__('Products'), route('products.index'));
 });
 
 // Products > Crear Producto
 Breadcrumbs::for('products.create', function ($trail) {
     $trail->parent('products.index');
-    $trail->push('Crear Producto', route('products.create'));
+    $trail->push(__('Create Product'), route('products.create'));
 });
 
 // Products > Ver Producto
 Breadcrumbs::for('products.show', function ($trail, $product) {
     $trail->parent('products.index');
-    $trail->push('Ver Producto', route('products.show', $product));
+    $trail->push(__('View Product'), route('products.show', $product));
 });
 
-// Products > Editar Producto
+// Products > Actualizar Producto
 Breadcrumbs::for('products.edit', function ($trail, $product) {
     $trail->parent('products.index');
-    $trail->push('Actualizar Producto', route('products.edit', $product));
+    $trail->push(__('Update Product'), route('products.edit', $product));
 });
 
 // Brands
 Breadcrumbs::for('brands.index', function ($trail) {
-    $trail->push('Marcas', route('brands.index'));
+    $trail->push(__('Brands'), route('brands.index'));
 });
 
 // Brands > Crear Marca
 Breadcrumbs::for('brands.create', function ($trail) {
     $trail->parent('brands.index');
-    $trail->push('Crear Marca', route('brands.create'));
+    $trail->push(__('Create Brand'), route('brands.create'));
 });
 
 // Brands > Ver Marca
 Breadcrumbs::for('brands.show', function ($trail, $product) {
     $trail->parent('brands.index');
-    $trail->push('Ver Marca', route('brands.show', $product));
+    $trail->push(__('View Brand'), route('brands.show', $product));
 });
 
-// Brands > Editar Marca
+// Brands > Actualizar Marca
 Breadcrumbs::for('brands.edit', function ($trail, $product) {
     $trail->parent('brands.index');
-    $trail->push('Actualizar Marca', route('brands.edit', $product));
+    $trail->push(__('Update Brand'), route('brands.edit', $product));
 });
 
 // Quotings
 Breadcrumbs::for('quotings.index', function ($trail) {
-    $trail->push('Quotings', route('quotings.index'));
+    $trail->push(__('Quotings'), route('quotings.index'));
 });
 
 // Quotings > Crear Cotización
 Breadcrumbs::for('quotings.create', function ($trail) {
     $trail->parent('quotings.index');
-    $trail->push('Crear Cotización', route('quotings.create'));
+    $trail->push(__('Create Quoting'), route('quotings.create'));
 });
 
 // Quotings > Ver Cotización
 Breadcrumbs::for('quotings.show', function ($trail, $quoting) {
     $trail->parent('quotings.index');
-    $trail->push('Ver Cotización', route('quotings.show', $quoting));
+    $trail->push(__('View Quoting'), route('quotings.show', $quoting));
 });
 
-// Quotings > Editar Cotización
+// Quotings > Actualizar Cotización
 Breadcrumbs::for('quotings.edit', function ($trail, $quoting) {
     $trail->parent('quotings.index');
-    $trail->push('Actualizar Cotización', route('quotings.edit', $quoting));
+    $trail->push(__('Update Quoting'), route('quotings.edit', $quoting));
 });

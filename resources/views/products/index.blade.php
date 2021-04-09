@@ -6,36 +6,32 @@
         @if(current_user()->hasRole(['Super Admin', 'Admin']))
             <div class="float-end ms-3">
                 <a id="smallButton" data-bs-toggle="modal" data-bs-target="#importModal" class="btn btn-danger">
-                    Importar Productos
+                    {{ __('Import Products') }}
                 </a>
-                <a href="{{ route('products.create') }}" class="btn btn-hb">Nuevo Producto</a>
+                <a href="{{ route('products.create') }}" class="btn btn-hb">{{ __('New Product') }}</a>
             </div>
         @endif
-        <form class="float-end" action="{{ route('products.index') }}">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Buscar Producto..." name="s" value={{ $search }}>
-                <button class="btn btn-hb" type="submit">Buscar</button>
-                @if($search)
-                    <a href="{{ route('products.index') }}" class="btn btn-danger">Limpiar</a>
-                @endif
-            </div>
-        </form>
+        @php
+            $route = route('products.index');
+            $placeholder = __('Search Product');
+        @endphp
+        @include('partials.search')
     </x-slot>
     <div class="container-fluid">
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">División</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Material</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Descripción Español</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Moneda</th>
-                    <th scope="col" style="width:10%">Empaque Min.</th>
-                    <th scope="col">ABC</th>
-                    <th scope="col" style="width:10%">Acciones</th>
+                    <th scope="col">{{ __('Division') }}</th>
+                    <th scope="col">{{ __('Brand') }}</th>
+                    <th scope="col">{{ __('Material') }}</th>
+                    <th scope="col">{{ __('Description') }}</th>
+                    <th scope="col">{{ __('Description Spanish') }}</th>
+                    <th scope="col">{{ __('Amount') }}</th>
+                    <th scope="col">{{ __('Unit') }}</th>
+                    <th scope="col" style="width:10%">{{ __('Min Package') }}</th>
+                    <th scope="col">{{ __('ABC') }}</th>
+                    <th scope="col" style="width:10%">{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +62,7 @@
                 @empty
                     <tr>
                         <td colspan="11" class="text-center">
-                            No se encontraron registros
+                            {{ __('No records found') }}
                         </td>
                     </tr>
                 @endforelse
@@ -82,10 +78,10 @@
       <div class="modal-content">
         <form action="{{ route('products.import') }}">
             <div class="modal-body">
-                <h3 class="text-center border-0 mt-5 mb-3"><strong>¿Estas seguro que quieres importar los productos?</strong></h3>
+                <h3 class="text-center border-0 mt-5 mb-3"><strong>{{ __('Are you sure you want to import the products?') }}</strong></h3>
                 <div class="modal-footer border-0 d-flex justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger">Importar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('Import') }}</button>
                 </div>
             </div>
         </form>

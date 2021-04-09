@@ -11,24 +11,24 @@
         <div>
             <img src="{{ asset('images/logo-large.png') }}" alt="Cotizador Hubbell" class="logo">
             <div class="info">
-                <strong>Creado por:</strong> {{ $quoting->user->name }}<br/>
-                <strong>Cliente:</strong> {{ $quoting->client }}<br/>
-                <strong>Fecha:</strong> {{ $quoting->created_at }}
+                <strong>{{ __('Created by') }}:</strong> {{ $quoting->user->name }}<br/>
+                <strong>{{ __('Client') }}:</strong> {{ $quoting->client }}<br/>
+                <strong>{{ __('Date') }}:</strong> {{ $quoting->created_at }}
             </div>
         </div>
         <h2 class="title">
-            Cotización
+            {{ __('Quoting') }}
         </h2>
         <div class="container-fluid">
             <table class="table" cellspacing="0" cellpadding="0">
                 <thead class="table-dark">
                     <tr>
-                        <th class="col">Contacto</th>
-                        <th class="col">Dirección</th>
-                        <th class="col">Zona</th>
-                        <th class="col">Proyecto</th>
-                        <th class="col">Duración</th>
-                        <th class="col">Vendedor</th>
+                        <th class="col">{{ __('Contact') }}</th>
+                        <th class="col">{{ __('Address') }}</th>
+                        <th class="col">{{ __('Zone') }}</th>
+                        <th class="col">{{ __('Project') }}</th>
+                        <th class="col">{{ __('Duration') }}</th>
+                        <th class="col">{{ __('Seller') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,20 +48,20 @@
         </div>
         <div class="container-fluid">
             <h2>
-                Productos
+                {{ __('Products') }}
             </h2>
             <table class="table table-products" cellspacing="0" cellpadding="0">
                 <thead class="table-dark">
                     <tr>
-                        <th class="col">División</th>
-                        <th class="col">Marca</th>
-                        <th class="col">Material</th>
-                        <th class="col">Descripción</th>
-                        <th class="col">Descripción Español</th>
-                        <th class="col">Cantidad</th>
-                        <th class="col">Precio</th>
-                        <th class="col">Monto</th>
-                        <th class="col">Moneda</th>
+                        <th class="col">{{ __('Division') }}</th>
+                        <th class="col">{{ __('Brand') }}</th>
+                        <th class="col">{{ __('Material') }}</th>
+                        <th class="col">{{ __('Description') }}</th>
+                        <th class="col">{{ __('Description Spanish') }}</th>
+                        <th class="col">{{ __('Amount') }}</th>
+                        <th class="col">{{ __('Price') }}</th>
+                        <th class="col">{{ __('Total') }}</th>
+                        <th class="col">{{ __('Unit') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,8 +87,8 @@
         </div>
         <br />
         <div class="text-danger">
-            <strong>La cotización es sólo con fines de carácter informativo, no sustituye una cotización formal proporcionada por Hubbell Products México <br />
-            *La cotización esta sujeta a cambios de precio, tiempos de entrega, empaques, etc. sin previo aviso</strong>
+            <strong>{{ __('The quote is for informational purposes only, it does not replace a formal quote provided by Hubbell Products Mexico.') }} <br />
+            {{ __('* The quote is subject to price changes, delivery times, packaging, etc. without prior notice') }}</strong>
         </div>
     </body>
 </html>

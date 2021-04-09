@@ -4,29 +4,25 @@
             {{ Breadcrumbs::render('users.index') }}
         </h2>
         <div class="float-end ms-3">
-            <a href="{{ route('users.create') }}" class="btn btn-hb">Nuevo Usuario</a>
+            <a href="{{ route('users.create') }}" class="btn btn-hb">{{ __('New User') }}</a>
         </div>
-        <form class="float-end" action="{{ route('users.index') }}">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Buscar Usuario..." name="s" value={{ $search }}>
-                <button class="btn btn-hb" type="submit">Buscar</button>
-                @if($search)
-                    <a href="{{ route('users.index') }}" class="btn btn-danger">Limpiar</a>
-                @endif
-            </div>
-        </form>
+        @php
+            $route = route('users.index');
+            $placeholder = __('Search User');
+        @endphp
+        @include('partials.search')
     </x-slot>
     <div class="container-fluid">
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
                     <th scope="col" style="width:10%">#</th>
-                    <th scope="col" style="width:20%">Nombre</th>
-                    <th scope="col" style="width:10%">Email</th>
-                    <th scope="col" style="width:10%"># Cliente</th>
-                    <th scope="col" style="width:10%">Teléfono</th>
-                    <th scope="col" style="width:20%">Roles</th>
-                    <th scope="col" style="width:25%">Acciones</th>
+                    <th scope="col" style="width:20%">{{ __('Name') }}</th>
+                    <th scope="col" style="width:10%">{{ __('Email') }}</th>
+                    <th scope="col" style="width:10%"># {{ __('Client') }}</th>
+                    <th scope="col" style="width:10%">{{ __('Telephone') }}</th>
+                    <th scope="col" style="width:20%">{{ __('Roles') }}</th>
+                    <th scope="col" style="width:25%">{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,7 +59,7 @@
                 @empty
                     <tr>
                         <td colspan="8" class="text-center">
-                            No se encontraron registros
+                            {{ __('No records found') }}
                         </td>
                     </tr>
                 @endforelse

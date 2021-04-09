@@ -134,8 +134,43 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'client' => [
+            'required' => 'The Client number is required',
+        ],
+        'name' => [
+            'required' => 'The Name is required',
+        ],
+        'brand' => [
+            'required' => 'The Brand is required',
+        ],
+        'discount' => [
+            'required' => 'The Discount is required',
+        ],
+        'division' => [
+            'required' => 'The Division is required',
+        ],
+        'material' => [
+            'required' => 'The Material is required',
+        ],
+        'email' => [
+            'required' => 'The Email is required',
+            'unique' => 'The Email is already registered',
+            'email' => 'The Email has an invalid format',
+        ],
+        'firstname' => [
+            'required' => 'The Nombre is required',
+            'min' => 'The Nombre must contain at least 3 characters',
+        ],
+        'password' => [
+            'required' => 'The Password is required',
+            'confirmed' => 'The Password must be confirmed',
+            'min' => 'The Password must contain at least 6 characters',
+        ],
+        'token' => [
+            'required' => 'The Token is required',
+        ],
+        'material' => [
+            'required' => 'The Material is required',
         ],
     ],
 
@@ -146,7 +181,7 @@ return [
     |
     | The following language lines are used to swap our attribute placeholder
     | with something more reader friendly such as "E-Mail Address" instead
-    | of "email". This simply helps us make our message more expressive.
+    | of "email". This simply hTheps us make our message more expressive.
     |
     */
 

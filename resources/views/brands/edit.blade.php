@@ -9,12 +9,12 @@
             @csrf
             <div class="row mb-3">
                 <div class="col">
-                    <label for="name" class="form-label">Nombre</label>
+                    <label for="name" class="form-label">{{ __('Name') }}</label>
                     <input type="text" class="form-control" id="name" name="name"
                         value="{{ $brand->name }}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-hb">Actualizar</button>
+            <button type="submit" class="btn btn-hb">{{ __('Update Brand') }}</button>
         </form>
     </div>
 </x-app-layout>

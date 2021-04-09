@@ -9,51 +9,51 @@
             @csrf
             <div class="row mb-3">
                 <div class="col">
-                    <label for="division" class="form-label">División</label>
+                    <label for="division" class="form-label">{{ __('Division') }}</label>
                     <input type="text" class="form-control" id="division" name="division"
                         value="{{ $product->division }}">
                 </div>
                 <div class="col">
-                    <label for="brand" class="form-label">Marca</label>
+                    <label for="brand" class="form-label">{{ __('Brand') }}</label>
                     <input type="text" class="form-control" id="brand" name="brand"
                         value="{{ $product->brand }}">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label for="material" class="form-label">Material</label>
+                    <label for="material" class="form-label">{{ __('Material') }}</label>
                     <input type="text" class="form-control" id="material" name="material"
                         value="{{ $product->material }}">
                 </div>
                 <div class="col">
-                    <label for="amount" class="form-label">Cantidad</label>
+                    <label for="amount" class="form-label">{{ __('Amount') }}</label>
                     <input type="text" class="form-control" id="amount" name="amount"
                         value="{{ $product->amount }}">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label for="unit" class="form-label">Moneda</label>
+                    <label for="unit" class="form-label">{{ __('Unit') }}</label>
                     <input type="text" class="form-control" id="unit" name="unit"
                         value="{{ $product->unit }}">
                 </div>
                 <div class="col">
-                    <label for="min_package" class="form-label">Empaque Mínimo</label>
+                    <label for="min_package" class="form-label">{{ __('Min Package') }}</label>
                     <input type="text" class="form-control" id="min_package" name="min_package"
                         value="{{ $product->min_package }}">
                 </div>
                 <div class="col">
-                    <label for="abc" class="form-label">ABC</label>
+                    <label for="abc" class="form-label">{{ __('ABC') }}</label>
                     <input type="text" class="form-control" id="abc" name="abc"
                         value="{{ $product->abc }}">
                 </div>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Descripción</label>
+                <label for="description" class="form-label">{{ __('Description') }}</label>
                 <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{ $product->description }}</textarea>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-hb">Actualizar</button>
+                <button type="submit" class="btn btn-hb">{{ __('Update Quoting') }}</button>
             </div>
         </form>
     </div>

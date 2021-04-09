@@ -4,33 +4,29 @@
             {{ Breadcrumbs::render('quotings.index') }}
         </h2>
         <div class="float-end ms-3">
-            <a href="{{ route('quotings.create') }}" class="btn btn-hb">Nueva Cotización</a>
+            <a href="{{ route('quotings.create') }}" class="btn btn-hb">{{ __('New Quoting') }}</a>
         </div>
-        <form class="float-end" action="{{ route('quotings.index') }}">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Buscar Cotización..." name="s" value={{ $search }}>
-                <button class="btn btn-hb" type="submit">Buscar</button>
-                @if($search)
-                    <a href="{{ route('quotings.index') }}" class="btn btn-danger">Limpiar</a>
-                @endif
-            </div>
-        </form>
+        @php
+            $route = route('quotings.index');
+            $placeholder = __('Search Quoting');
+        @endphp
+        @include('partials.search')
     </x-slot>
     <div class="container-fluid">
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">Creado por</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Zona</th>
-                    <th scope="col">Proyecto</th>
-                    <th scope="col">Duración</th>
-                    <th scope="col">Vendedor</th>
-                    <th scope="col">Productos</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col" style="width:10%">Acciones</th>
+                    <th scope="col">{{ __('Created by') }}</th>
+                    <th scope="col">{{ __('Client') }}</th>
+                    <th scope="col">{{ __('Contact') }}</th>
+                    <th scope="col">{{ __('Address') }}</th>
+                    <th scope="col">{{ __('Zone') }}</th>
+                    <th scope="col">{{ __('Project') }}</th>
+                    <th scope="col">{{ __('Duration') }}</th>
+                    <th scope="col">{{ __('Seller') }}</th>
+                    <th scope="col">{{ __('Products') }}</th>
+                    <th scope="col">{{ __('Date') }}</th>
+                    <th scope="col" style="width:10%">{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,7 +45,7 @@
                         <td>{{ $quoting->seller }}</td>
                         <td>
                             <a data-bs-toggle="modal" data-bs-target="#productsModal{{ $quoting->id }}" class="btn btn-primary">
-                                <i class="bi bi-arrow-up-right-square-fill mr-2"></i>Ver Productos
+                                <i class="bi bi-arrow-up-right-square-fill mr-2"></i>{{ __('View Products') }}
                             </a>
                             <!-- Modal Products -->
                             <div class="modal fade" id="productsModal{{ $quoting->id }}" tabindex="-1" aria-labelledby="productsModal{{ $quoting->id }}" aria-hidden="true">
@@ -57,22 +53,22 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="text-center w-100 h2 mb-3 mt-3">
-                                                <strong>Productos de la Cotización</strong>
+                                                <strong>{{ __('Quote Products') }}</strong>
                                             </div>
                                         </div>
                                         <div class="modal-body">
                                             <table class="table table-striped table-hover" style="font-size: 14px;">
                                                 <thead class="table-dark">
                                                     <tr>
-                                                        <th scope="col">División</th>
-                                                        <th scope="col">Marca</th>
-                                                        <th scope="col">Material</th>
-                                                        <th scope="col">Descripción</th>
-                                                        <th scope="col">Descripción Español</th>
-                                                        <th scope="col">Cantidad</th>
-                                                        <th scope="col">Precio</th>
-                                                        <th scope="col">Monto</th>
-                                                        <th scope="col">Moneda</th>
+                                                        <th scope="col">{{ __('Division') }}</th>
+                                                        <th scope="col">{{ __('Brand') }}</th>
+                                                        <th scope="col">{{ __('Material') }}</th>
+                                                        <th scope="col">{{ __('Description') }}</th>
+                                                        <th scope="col">{{ __('Description Spanish') }}</th>
+                                                        <th scope="col">{{ __('Amount') }}</th>
+                                                        <th scope="col">{{ __('Price') }}</th>
+                                                        <th scope="col">{{ __('Total') }}</th>
+                                                        <th scope="col">{{ __('Unit') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -115,7 +111,7 @@
                 @empty
                     <tr>
                         <td colspan="12" class="text-center">
-                            No se encontraron registros
+                            {{ __('No records found') }}
                         </td>
                     </tr>
                 @endforelse

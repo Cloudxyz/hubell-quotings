@@ -4,54 +4,69 @@
             {{ Breadcrumbs::render('quotings.create') }}
         </h2>
     </x-slot>
+    @php
+        $client = current_user()->profile->client_number;
+        $contact = current_user()->profile->phone;
+        $address = current_user()->profile->street.' '.current_user()->profile->zip.', '.current_user()->profile->city.', '.current_user()->profile->state.', '.current_user()->profile->country;
+    @endphp
     <div class="container-fluid mb-5">
         <form action="{{ route('quotings.products.add') }}" method="POST">
             @csrf
             <div class="row mb-3">
                 <div class="col">
-                    <label for="client" class="form-label">Cliente</label>
+                    <label for="client" class="form-label">{{ __('Client') }}</label>
                     @if (current_user()->hasRole(['Super Admin', 'Admin']))
                         <input type="text" class="form-control" id="client" name="client" 
                             value="{{ (session()->get('client')) ? session()->get('client') : old('client') }}">
                     @else
                         <input type="text" class="form-control" id="client" name="client" 
-                            value="{{ (session()->get('client')) ? session()->get('client') : current_user()->profile->client_number }}" readonly>
+                            value="{{ (session()->get('client')) ? session()->get('client') : $client }}" readonly>
                     @endif
                 </div>
                 <div class="col">
-                    <label for="contact" class="form-label">Contacto</label>
-                    <input type="text" class="form-control" id="contact" name="contact"
-                        value="{{ (session()->get('contact')) ? session()->get('contact') : old('contact') }}">
+                    <label for="contact" class="form-label">{{ __('Contact') }}</label>
+                    @if (current_user()->hasRole(['Super Admin', 'Admin']))
+                        <input type="text" class="form-control" id="contact" name="contact" 
+                            value="{{ (session()->get('contact')) ? session()->get('contact') : old('client') }}">
+                    @else
+                        <input type="text" class="form-control" id="contact" name="contact"
+                            value="{{ (session()->get('contact')) ? session()->get('contact') : $contact }}">
+                    @endif
                 </div>
                 <div class="col">
-                    <label for="address" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="address" name="address"
-                        value="{{ (session()->get('address')) ? session()->get('address') : old('address') }}">
+                    <label for="address" class="form-label">{{ __('Address') }}</label>
+                    @if (current_user()->hasRole(['Super Admin', 'Admin']))
+                        <input type="text" class="form-control" id="address" name="address" 
+                            value="{{ (session()->get('address')) ? session()->get('address') : old('client') }}">
+                    @else
+                        <input type="text" class="form-control" id="address" name="address"
+                            value="{{ (session()->get('address')) ? session()->get('address') : $address }}">
+                    @endif
                 </div>
                 <div class="col">
-                    <label for="zone" class="form-label">Zona</label>
+                    <label for="zone" class="form-label">{{ __('Zone') }}</label>
                     <input type="text" class="form-control" id="zone" name="zone"
                         value="{{ (session()->get('zone')) ? session()->get('zone') : old('zone') }}">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <label for="project" class="form-label">Proyecto</label>
+                    <label for="project" class="form-label">{{ __('Project') }}</label>
                     <input type="text" class="form-control" id="project" name="project"
                         value="{{ (session()->get('project')) ? session()->get('project') : old('project') }}">
                 </div>
                 <div class="col">
-                    <label for="duration" class="form-label">Duración</label>
+                    <label for="duration" class="form-label">{{ __('Duration') }}</label>
                     <input type="text" class="form-control" id="duration" name="duration"
                         value="{{ (session()->get('duration')) ? session()->get('duration') : old('duration') }}">
                 </div>
                 <div class="col">
-                    <label for="seller" class="form-label">Vendedor</label>
+                    <label for="seller" class="form-label">{{ __('Seller') }}</label>
                     <input type="text" class="form-control" id="seller" name="seller"
                         value="{{ (session()->get('seller')) ? session()->get('seller') : old('seller') }}">
                 </div>
                 <div class="col">
-                    <label for="date" class="form-label">Fecha</label>
+                    <label for="date" class="form-label">{{ __('Date') }}</label>
                     <div class="form-control">{{ date("F j, Y, g:i a") }}</div>
                 </div>
                 <div class="col">
@@ -60,7 +75,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-hb">Buscar Producto</button>
+                <button type="submit" class="btn btn-hb">{{ __('Search Product') }}</button>
             </div>
         </form>
         <p class="text-danger">
@@ -71,24 +86,24 @@
     @if(session()->exists('products'))
         <div class="container-fluid">
             <div class="title-header h3">
-                <strong>Productos</strong>
+                <strong>{{ __('Products') }}</strong>
             </div>
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Catálogo</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Descripción Español</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Tiempo de Entrega</th>
-                        <th scope="col">Empaque Min.</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio Lista</th>
-                        <th scope="col">Dto.</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col">Moneda</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">{{ __('Catalogue') }}</th>
+                        <th scope="col">{{ __('Description') }}</th>
+                        <th scope="col">{{ __('Description Spanish') }}</th>
+                        <th scope="col">{{ __('Brand') }}</th>
+                        <th scope="col">{{ __('Delivery time') }}</th>
+                        <th scope="col">{{ __('Min Package') }}</th>
+                        <th scope="col">{{ __('Amount') }}</th>
+                        <th scope="col">{{ __('List Price') }}</th>
+                        <th scope="col">{{ __('Dto.') }}</th>
+                        <th scope="col">{{ __('Total') }}</th>
+                        <th scope="col">{{ __('Unit') }}</th>
+                        <th scope="col">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,7 +141,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <a href="{{ route('quotings.store') }}" class="btn btn-hb float-right">Generar Cotización</a>
+            <a href="{{ route('quotings.store') }}" class="btn btn-hb float-right">{{ __('Generate Quoting') }}</a>
         </div>
     @endif
 </x-app-layout>

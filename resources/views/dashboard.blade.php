@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Intrucciones para cotizar
+            {{ __('Instructions to quote') }}
         </h2>
     </x-slot>
 
@@ -17,7 +17,7 @@
                         <img src="{{ asset('images/instrucciones.png') }}" class="block h-100 w-auto fill-current text-gray-600 mb-5">
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ route('quotings.create') }}" class="btn btn-hb">Nueva Cotización</a>
+                        <a href="{{ route('quotings.create') }}" class="btn btn-hb">{{ __('New Quoting') }}</a>
                     </div>
                 </div>
             </div>

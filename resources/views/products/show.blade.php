@@ -7,48 +7,48 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col">
-                <label for="division" class="form-label">División</label>
+                <label for="division" class="form-label">{{ __('Division') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->division }}</div>
             </div>
             <div class="col">
-                <label for="lastname" class="form-label">Marca</label>
+                <label for="lastname" class="form-label">{{ __('Brand') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->brand }}</div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="material" class="form-label">Material</label>
+                <label for="material" class="form-label">{{ __('Material') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->material }}</div>
             </div>
             <div class="col">
-                <label for="amount" class="form-label">Cantidad</label>
+                <label for="amount" class="form-label">{{ __('Amount') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->amount }}</div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="unit" class="form-label">Moneda</label>
+                <label for="unit" class="form-label">{{ __('Unit') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->unit }}</div>
             </div>
             <div class="col">
-                <label for="min_package" class="form-label">Empaque Mínimo</label>
+                <label for="min_package" class="form-label">{{ __('Min Package') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->min_package }}</div>
             </div>
             <div class="col">
-                <label for="abc" class="form-label">ABC</label>
+                <label for="abc" class="form-label">{{ __('ABC') }}</label>
                 <div class="form-control" style="height: 40px">{{ $product->abc }}</div>
             </div>
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label">Descripción</label>
+            <label for="description" class="form-label">{{ __('Description') }}</label>
             <div class="form-control" style="height: 40px">{{ $product->description }}</div>
         </div>
         <div class="mb-3">
-            <label for="description_es" class="form-label">Descripción Español</label>
+            <label for="description_es" class="form-label">{{ __('Description Spanish') }}</label>
             <div class="form-control" style="height: 40px">{{ $product->description_es }}</div>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="{{ route('products.edit', [$product->id]) }}" class="btn btn-hb">Editar Producto</a>
+            <a href="{{ route('products.edit', [$product->id]) }}" class="btn btn-hb">{{ __('Edit Product') }}</a>
         </div>
     </div>
 </x-app-layout>
