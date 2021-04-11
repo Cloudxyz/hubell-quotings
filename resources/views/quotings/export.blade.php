@@ -82,6 +82,20 @@
                             <td>{{ $product->unit }}</td>
                         </tr>
                     @endforeach
+                    @if($quoting->total_usd)
+                        <tr>
+                            <td colspan="9" class="col-text-right">
+                                <strong>Total USD:</strong> $<span class="total-usd">{{ number_format($quoting->total_usd, 2) }}</span>
+                            </td>
+                        </tr>
+                    @endif
+                    @if($quoting->total_mxn)
+                        <tr>
+                            <td colspan="9" class="col-text-right">
+                                <strong>Total MXN:</strong> $<span class="total-mxn">{{ number_format($quoting->total_mxn, 2) }}</span>
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

@@ -22,6 +22,8 @@ class Quoting extends Model implements Auditable
         'duration',
         'seller',
         'products',
+        'total_usd',
+        'total_mxn',
     ];
 
     public function user()

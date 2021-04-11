@@ -125,11 +125,11 @@
                             <td>{{ $product->abc }}</td>
                             <td>{{ $product->min_package }}</td>
                             <td>
-                                <input type="number" name="quantity" min="{{ $product->input_min }}" class="w-100" value="{{ $quantity }}" data-route={{ route('quotings.update.product') }} data-material={{ $product->material }}>
+                                <input type="number" name="quantity" min="{{ $product->input_min }}" class="w-100" value="{{ $quantity }}" data-route={{ route('quotings.update.product') }} data-material={{ $product->material }} data-unit={{ $product->unit }} data-total={{ $total }}>
                             </td>
                             <td>${{ $product->amount }}</td>
                             <td>{{ $product->discount }}</td>
-                            <td>${{ $total }}</td>
+                            <td name="total">${{ $total }}</td>
                             <td>{{ $product->unit }}</td>
                             <td>
                                 <a href="{{ route('quotings.products.remove', [$product->id]) }}" class="remove_product text-danger mr-2 icons"><i class="bi bi-trash"></i></a>
@@ -139,6 +139,20 @@
                             $i ++;
                         @endphp
                     @endforeach
+                    @if(session()->get('totalUSD'))
+                        <tr>
+                            <td colspan="13" class="text-right">
+                                <strong>Total USD:</strong> $<span class="total-usd">{{ session()->get('totalUSD') }}</span>
+                            </td>
+                        </tr>
+                    @endif
+                    @if(session()->get('totalMXN'))
+                        <tr>
+                            <td colspan="13" class="text-right">
+                                <strong>Total MXN:</strong> $<span class="total-mxn">{{ session()->get('totalMXN') }}</span>
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
             <a href="{{ route('quotings.store') }}" class="btn btn-hb float-right">{{ __('Generate Quoting') }}</a>

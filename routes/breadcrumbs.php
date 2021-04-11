@@ -91,3 +91,8 @@ Breadcrumbs::for('quotings.edit', function ($trail, $quoting) {
     $trail->parent('quotings.index');
     $trail->push(__('Update Quoting'), route('quotings.edit', $quoting));
 });
+
+// Reports
+Breadcrumbs::for('reports.index', function ($trail) {
+    $trail->push(__('Reports'), route('reports.index'));
+});

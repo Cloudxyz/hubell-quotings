@@ -98,7 +98,6 @@ class QuotingsController extends Controller
             'client'   => 'required',
             'material' => 'required',
         ]);
-    
 
         if(session()->get('products')){
             $getproductsArr = json_decode(session()->get('products'));
@@ -113,6 +112,18 @@ class QuotingsController extends Controller
             $getproductsArr = [];
             $productExist = false;
         };
+
+        if(session()->get('totalUSD')){
+            $totalUSD = session()->get('totalUSD');
+        }else{
+            $totalUSD = 0;
+        }
+
+        if(session()->get('totalMXN')){
+            $totalMXN = session()->get('totalMXN');
+        }else{
+            $totalMXN = 0;
+        }
         
         if(!$productExist){
             $products = Product::where('material', $request->material)->get();
@@ -129,6 +140,7 @@ class QuotingsController extends Controller
                 $search = [];
                 $search['brand'] = $product->brand;
                 $search['user'] = $request->client;
+                $minPackage = trim(str_replace('PZ','',$product->min_package));
                 $query = Discount::query();
                 $query->where(function ($query) use ($search) {
                     $query->whereHas('user', function ($query) use ($search) {
@@ -145,16 +157,26 @@ class QuotingsController extends Controller
                     $discount = $query->first()->discount;
                 }
                 $product->discount = $discount.'%';
-                $product->input_min = trim(str_replace('PZ','',$product->min_package));
-                $product->quantity = trim(str_replace('PZ','',$product->min_package));
-                $product->total = $product->amount;
+                $product->input_min = $minPackage;
+                $product->quantity = $minPackage;
+                $discount = $discount / 100;
+                $discountAmount = $product->amount - ($product->amount * $discount);
+                $product->total =  number_format($minPackage * $discountAmount, 2);
+                if($product->unit == 'USD'){
+                    $totalUSD += $product->total;
+                }elseif($product->unit == 'MXN'){
+                    $totalMXN += $product->total;
+                }
                 $productsArr[] = $product;
             }
-    
+
+            
             if(!empty($productsArr)){
                 $productsArr = array_merge((array)$getproductsArr, $productsArr);
                 $jsonproductsArr = json_encode($productsArr);
                 session(['products' => $jsonproductsArr]);
+                session(['totalUSD' => $totalUSD]);
+                session(['totalMXN' => $totalMXN]);
             }
         }
 
@@ -163,15 +185,40 @@ class QuotingsController extends Controller
 
     public function remove($id)
     {
+        $totalUSD = session()->get('totalUSD');
+        $totalMXN = session()->get('totalMXN');
         $products = (array) json_decode(session()->get('products'));
         foreach($products as $index => $product){
             if($id == $product->id){
                 unset($products[$index]);
+                if($product->unit == 'USD'){
+                    $totalUSD -= $product->total;
+                }else if($product->unit == 'MXN'){
+                    $totalMXN -= $product->total;
+                }
             }
         }
+        
+        if(!empty($products)){
+            $jsonProducts = json_encode($products);
+            session(['products' => $jsonProducts]);
+            if($totalUSD <= 0){
+                session()->forget('totalUSD');
+            }else{
+                session(['totalUSD' => $totalUSD]);
+            }
+            if($totalMXN <= 0){
+                session()->forget('totalMXN');
+            }else{
+                session(['totalMXN' => $totalMXN]);
+            }
+        }else{
+            //remove sessions of quoting
+            session()->forget('products');
+            session()->forget('totalUSD');
+            session()->forget('totalMXN');
+        }
 
-        $jsonProducts = json_encode($products);
-        session(['products' => $jsonProducts]);
 
         return redirect()->back()->withInput();
     }
@@ -185,10 +232,12 @@ class QuotingsController extends Controller
                 $product->total = $request->price;
             }
         }
-
+        
         $jsonProducts = json_encode($products);
 
         session(['products' => $jsonProducts]);
+        session(['totalUSD' => $request->totalUSD]);
+        session(['totalMXN' => $request->totalMXN]);
 
         return true;
     }
@@ -206,15 +255,17 @@ class QuotingsController extends Controller
         }else{
             $quoting = new Quoting;
         }
-        $quoting->user_id  = current_user()->id;
-        $quoting->client   = session()->get('client');
-        $quoting->contact  = session()->get('contact');
-        $quoting->address  = session()->get('address');
-        $quoting->zone     = session()->get('zone');
-        $quoting->project  = session()->get('project');
-        $quoting->duration = session()->get('duration');
-        $quoting->seller   = session()->get('seller');
-        $quoting->products = session()->get('products');
+        $quoting->user_id   = current_user()->id;
+        $quoting->client    = session()->get('client');
+        $quoting->contact   = session()->get('contact');
+        $quoting->address   = session()->get('address');
+        $quoting->zone      = session()->get('zone');
+        $quoting->project   = session()->get('project');
+        $quoting->duration  = session()->get('duration');
+        $quoting->seller    = session()->get('seller');
+        $quoting->total_usd = (session()->get('totalUSD'))?session()->get('totalUSD'):0;
+        $quoting->total_mxn = (session()->get('totalMXN'))?session()->get('totalMXN'):0;
+        $quoting->products  = session()->get('products');
 
         if($quoting->save()){
             $request->session()->flash('success', __('Quoting created successfully'));
@@ -228,6 +279,8 @@ class QuotingsController extends Controller
             session()->forget('duration');
             session()->forget('seller');
             session()->forget('products');
+            session()->forget('totalUSD');
+            session()->forget('totalMXN');
 
             return redirect()->route('quotings.index');
         }else{
@@ -276,6 +329,8 @@ class QuotingsController extends Controller
         session(['project' => $quoting->project]);
         session(['duration' => $quoting->duration]);
         session(['seller' => $quoting->seller]);
+        session(['totalUSD' => $quoting->total_usd]);
+        session(['totalMXN' => $quoting->total_mxn]);
 
         return redirect()->route('quotings.create');
     }

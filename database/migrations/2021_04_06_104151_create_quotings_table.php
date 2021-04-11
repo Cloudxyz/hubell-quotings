@@ -24,6 +24,8 @@ class CreateQuotingsTable extends Migration
             $table->string('duration')->nullable();
             $table->string('seller')->nullable();
             $table->json('products');
+            $table->string('total_usd')->nullable();
+            $table->string('total_mxn')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -24,6 +24,8 @@
                     <th scope="col">{{ __('Project') }}</th>
                     <th scope="col">{{ __('Duration') }}</th>
                     <th scope="col">{{ __('Seller') }}</th>
+                    <th scope="col">{{ __('Total USD') }}</th>
+                    <th scope="col">{{ __('Total MXN') }}</th>
                     <th scope="col">{{ __('Products') }}</th>
                     <th scope="col">{{ __('Date') }}</th>
                     <th scope="col" style="width:10%">{{ __('Actions') }}</th>
@@ -43,6 +45,8 @@
                         <td>{{ $quoting->project }}</td>
                         <td>{{ $quoting->duration }}</td>
                         <td>{{ $quoting->seller }}</td>
+                        <td>${{ number_format($quoting->total_usd, 2) }}</td>
+                        <td>${{ number_format($quoting->total_mxn, 2) }}</td>
                         <td>
                             <a data-bs-toggle="modal" data-bs-target="#productsModal{{ $quoting->id }}" class="btn btn-primary">
                                 <i class="bi bi-arrow-up-right-square-fill mr-2"></i>{{ __('View Products') }}
@@ -85,6 +89,20 @@
                                                             <td>{{ $product->unit }}</td>
                                                         </tr>
                                                     @endforeach
+                                                    @if($quoting->total_usd)
+                                                        <tr>
+                                                            <td colspan="13" class="text-right">
+                                                                <strong>Total USD:</strong> $<span class="total-usd">{{ number_format($quoting->total_usd, 2) }}</span>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                    @if($quoting->total_mxn)
+                                                        <tr>
+                                                            <td colspan="13" class="text-right">
+                                                                <strong>Total MXN:</strong> $<span class="total-mxn">{{ number_format($quoting->total_mxn, 2) }}</span>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>

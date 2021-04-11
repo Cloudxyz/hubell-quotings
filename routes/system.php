@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\QuotingsController;
 use App\Http\Controllers\DiscountsController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'system', 'middleware' => 'auth'], function () {
@@ -39,6 +40,9 @@ Route::group(['prefix' => 'system', 'middleware' => 'auth'], function () {
         Route::post('brands/update/{id}', [BrandsController::class, 'update'])->name('brands.update');
         Route::get('brands/destroy/{id}', [BrandsController::class, 'destroy'])->name('brands.destroy');
         Route::get('brands/import', [BrandsController::class, 'import'])->name('brands.import');
+
+        //reports
+        Route::get('reports', [ReportsController::class, 'index'])->name('reports.index');
     });
     
     //products
