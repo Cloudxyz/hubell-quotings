@@ -9,8 +9,8 @@
             @csrf
             <div class="row mb-3">
                 <div class="col">
-                    <label for="name" class="form-label">{{ __('Name') }}</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                    <label for="firstname" class="form-label">{{ __('Name') }}</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('name') }}">
                 </div>
                 <div class="col">
                     <label for="lastname" class="form-label">{{ __('Lastname') }}</label>

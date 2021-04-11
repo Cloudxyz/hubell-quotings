@@ -9,8 +9,8 @@
             @csrf
             <div class="row mb-3">
                 <div class="col">
-                    <label for="name" class="form-label">{{ __('Name') }}</label>
-                    <input type="text" class="form-control" id="name" name="name"
+                    <label for="firstname" class="form-label">{{ __('Name') }}</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname"
                         value="{{ $user->name }}">
                 </div>
                 <div class="col">

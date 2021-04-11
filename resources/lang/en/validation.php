@@ -137,6 +137,9 @@ return [
         'client' => [
             'required' => 'The Client number is required',
         ],
+        'firstname' => [
+            'required' => 'The Name is required',
+        ],
         'name' => [
             'required' => 'The Name is required',
         ],
