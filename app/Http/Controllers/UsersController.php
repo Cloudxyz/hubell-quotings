@@ -71,6 +71,7 @@ class UsersController extends Controller
             'email'     => 'required|unique:users|email',
             'firstname' => 'required|min:3',
             'password' => 'required|confirmed|min:6',
+            'client_number' => 'required',
         ]);
 
         $user           = new User;
@@ -79,14 +80,15 @@ class UsersController extends Controller
         $user->password = Hash::make($request->password);
         if($user->save()){
             $profile = new Profile;
-            $profile->user_id   = $user->id;
-            $profile->lastname  = $request->lastname;
-            $profile->country   = $request->country;
-            $profile->state     = $request->state;
-            $profile->city      = $request->city;
-            $profile->street    = $request->street;
-            $profile->zip       = $request->zip;
-            $profile->phone     = $request->phone;
+            $profile->user_id       = $user->id;
+            $profile->lastname      = $request->lastname;
+            $profile->country       = $request->country;
+            $profile->state         = $request->state;
+            $profile->city          = $request->city;
+            $profile->street        = $request->street;
+            $profile->zip           = $request->zip;
+            $profile->phone         = $request->phone;
+            $profile->client_number = $request->client_number;
         }
 
         if($profile->save()){
@@ -148,6 +150,7 @@ class UsersController extends Controller
         if($request->password){
             $rule['password'] = 'confirmed|min:6';
         }
+        $rule['client_number'] = 'required';
         $validated = $request->validate($rules);
         
         $roles = $request->roles;
