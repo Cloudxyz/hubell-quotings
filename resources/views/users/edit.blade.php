@@ -11,7 +11,7 @@
                 <div class="col">
                     <label for="firstname" class="form-label">{{ __('Name') }}</label>
                     <input type="text" class="form-control" id="firstname" name="firstname"
-                        value="{{ $user->name }}">
+                        value="{{ $user->name }}" required>
                 </div>
                 <div class="col">
                     <label for="lastname" class="form-label">{{ __('Lastname') }}</label>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col">
                     <label for="email" class="form-label">{{ __('Email') }}</label>
-                    <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                    <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
                 </div>
             </div>
             <div class="row mb-3">
@@ -41,7 +41,7 @@
                     <label for="client_number" class="form-label">{{ __('No. Cliente') }}</label>
                         @if (current_user()->hasRole(['Super Admin', 'Admin']))
                             <input type="text" class="form-control" id="client_number" name="client_number"
-                            value="{{ $user->profile->client_number }}">
+                            value="{{ $user->profile->client_number }}" required>
                         @else
                             <div class="form-control" style="height: 40px">{{ $user->profile->client_number }}</div>
                         @endif

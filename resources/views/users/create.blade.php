@@ -10,7 +10,7 @@
             <div class="row mb-3">
                 <div class="col">
                     <label for="firstname" class="form-label">{{ __('Name') }}</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('name') }}">
+                    <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('name') }}" required>
                 </div>
                 <div class="col">
                     <label for="lastname" class="form-label">{{ __('Lastname') }}</label>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="col">
                     <label for="email" class="form-label">{{ __('Email') }}</label>
-                    <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                    <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                 </div>
             </div>
             <div class="row mb-3">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col">
                     <label for="client_number" class="form-label">{{ __('No. Cliente') }}</label>
-                    <input type="text" class="form-control" id="client_number" name="client_number" value="{{ old('client_number') }}">
+                    <input type="text" class="form-control" id="client_number" name="client_number" value="{{ old('client_number') }}" required>
                 </div>
                 <div class="col">
                     <label for="country" class="form-label">{{ __('Country') }}</label>

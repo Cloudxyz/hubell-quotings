@@ -137,6 +137,9 @@ return [
         'client' => [
             'required' => 'El Número de cliente es obligatorio',
         ],
+        'client_number' => [
+            'required' => 'El Número de cliente es obligatorio',
+        ],
         'firstname' => [
             'required' => 'El Nombre es obligatorio',
         ],

@@ -150,7 +150,6 @@ class UsersController extends Controller
         if($request->password){
             $rule['password'] = 'confirmed|min:6';
         }
-        $rule['client_number'] = 'required';
         $validated = $request->validate($rules);
         
         $roles = $request->roles;
