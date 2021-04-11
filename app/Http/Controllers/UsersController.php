@@ -78,6 +78,7 @@ class UsersController extends Controller
         $user->name     = $request->firstname;
         $user->email    = $request->email;
         $user->password = Hash::make($request->password);
+        $roles = $request->roles;
         if($user->save()){
             $profile = new Profile;
             $profile->user_id       = $user->id;
@@ -94,6 +95,9 @@ class UsersController extends Controller
         if($profile->save()){
             $request->session()->flash('success', __('Record created successfully'));
             $route = redirect()->route('users.edit', $user->id);
+            if($roles){
+                $user->syncRoles($roles);
+            }
         }else{
             $request->session()->flash('error', __("Record can't be created"));
             $route = redirect('users.create')->withInput();
