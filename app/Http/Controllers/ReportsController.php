@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Product;
+use App\Models\Quoting;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -13,7 +16,42 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        return view('reports.index');
+        $quotings = Quoting::all();
+        $productsTop = [];
+        $clientsTop = [];
+        $products = [];
+        $clients = [];
+        foreach($quotings as $quoting){
+            $quotingProducts = json_decode($quoting->products);
+            foreach($quotingProducts as $quotingProduct){
+                $productsTop[] = $quotingProduct->material;
+            }
+            $clientsTop[] = $quoting->client;
+        }
+
+        $countProducts = array_count_values($productsTop);
+        arsort($countProducts);
+        $itemsProducts = array_slice(array_keys($countProducts), 0, 5, true);
+
+        $countsClients = array_count_values($clientsTop);
+        arsort($countsClients);
+        $itemsClients = array_slice(array_keys($countsClients), 0, 5, true);
+
+        foreach($itemsProducts as $item){
+            $products[] = Product::where('material', $item)->first();
+        }
+
+        foreach($itemsClients as $item){
+            $query = User::query();
+            $query->whereHas('profile', function ($query) use ($item) {
+                $query->where('client_number', 'like', "%" . $item . "%");
+            });
+            $clients[] = $query->first();
+        }
+
+        return view('reports.index')
+            ->with('products', $products)
+            ->with('clients', $clients);
     }
 
     /**
