@@ -87,7 +87,6 @@ class UsersController extends Controller
             $profile->street    = $request->street;
             $profile->zip       = $request->zip;
             $profile->phone     = $request->phone;
-            $profile->discount  = $request->discount;
         }
 
         if($profile->save()){
