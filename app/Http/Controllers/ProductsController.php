@@ -33,7 +33,7 @@ class ProductsController extends Controller
             $query = Product::query();
         }
 
-        $products = $query->paginate(15);
+        $products = $query->paginate(30);
         $products->withPath('/system/products');
         return view('products.index')
             ->with('products', $products)

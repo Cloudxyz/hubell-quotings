@@ -3,9 +3,14 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight d-inline-flex">
             {{ Breadcrumbs::render('users.index') }}
         </h2>
-        <div class="float-end ms-3">
-            <a href="{{ route('users.create') }}" class="btn btn-hb">{{ __('New User') }}</a>
-        </div>
+        @if(current_user()->hasRole(['Super Admin', 'Admin']))
+            <div class="float-end ms-3">
+                <a id="smallButton" data-bs-toggle="modal" data-bs-target="#importModal" class="btn btn-danger">
+                    {{ __('Import Users') }}
+                </a>
+                <a href="{{ route('users.create') }}" class="btn btn-hb">{{ __('New User') }}</a>
+            </div>
+        @endif
         @php
             $route = route('users.index');
             $placeholder = __('Search User');
@@ -68,3 +73,20 @@
         {{ $users->onEachSide(1)->appends($_GET)->links() }}
     </div>
 </x-app-layout>
+
+<!-- Modal Import -->
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="{{ route('users.import') }}">
+            <div class="modal-body">
+                <h3 class="text-center border-0 mt-5 mb-3"><strong>{{ __('Are you sure you want to import the users?') }}</strong></h3>
+                <div class="modal-footer border-0 d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('Import') }}</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>

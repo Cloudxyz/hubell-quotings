@@ -17,6 +17,7 @@ Route::group(['prefix' => 'system', 'middleware' => 'auth'], function () {
         Route::post('users/store', [UsersController::class, 'store'])->name('users.store');
         Route::get('users/show/{id}', [UsersController::class, 'show'])->name('users.show');
         Route::get('users/destroy/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+        Route::get('users/import', [UsersController::class, 'import'])->name('users.import');
         
         //discount
         Route::post('discounts/store/{id}', [DiscountsController::class, 'store'])->name('discounts.store');

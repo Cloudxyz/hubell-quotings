@@ -27,7 +27,7 @@ class BrandsController extends Controller
             $query = Brand::query();
         }
 
-        $brands = $query->paginate(15);
+        $brands = $query->paginate(30);
         $brands->withPath('/system/brands');
         return view('brands.index')
             ->with('brands', $brands)

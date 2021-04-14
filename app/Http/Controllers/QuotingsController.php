@@ -46,7 +46,7 @@ class QuotingsController extends Controller
         }
 
 
-        $quotings = $query->paginate(15);
+        $quotings = $query->paginate(30);
         $quotings->withPath('/system/quotings');
         return view('quotings.index')
             ->with('quotings', $quotings)

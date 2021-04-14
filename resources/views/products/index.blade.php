@@ -31,7 +31,9 @@
                     <th scope="col">{{ __('Unit') }}</th>
                     <th scope="col" style="width:10%">{{ __('Min Package') }}</th>
                     <th scope="col">{{ __('ABC') }}</th>
-                    <th scope="col" style="width:10%">{{ __('Actions') }}</th>
+                    @if(current_user()->hasRole(['Super Admin', 'Admin']))
+                        <th scope="col" style="width:10%">{{ __('Actions') }}</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>

@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Profile;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -37,7 +39,7 @@ class UsersController extends Controller
             $query = User::query();
         }
 
-        $users = $query->paginate(15);
+        $users = $query->paginate(30);
         $users->withPath('/system/users');
         return view('users.index')
             ->with('users', $users)
@@ -198,6 +200,13 @@ class UsersController extends Controller
                 $request->session()->flash('error', __("Record can't be deleted"));
             }
         }
+
+        return redirect()->back();
+    }
+
+    public function import() 
+    {
+        Excel::import(new UsersImport, storage_path('users.xlsx'));
 
         return redirect()->back();
     }
